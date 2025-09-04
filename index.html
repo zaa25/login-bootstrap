@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="id" data-bs-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Masuk — Aplikasi</title>
+  <!-- Bootstrap 5.3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    /* Styling kecil agar tampilan lebih modern */
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    .card-login {
+      width: 100%;
+      max-width: 420px;
+      border: none;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+    }
+    .brand {
+      height: 64px;
+      width: 64px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .form-control:focus {
+      box-shadow: none;
+      border-color: #6366f1;
+    }
+    .eye-btn {
+      border: none;
+      background: transparent;
+      padding: 0 8px;
+    }
+    .footer-small {
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <main class="container py-5">
+    <section class="d-flex align-items-center justify-content-center">
+      <div class="card card-login">
+        <div class="card-body p-4 p-md-5">
+          <div class="text-center mb-4">
+            <div class="brand mx-auto">AI</div>
+            <h5 class="mb-0">Selamat datang kembali</h5>
+            <p class="text-muted small">Silakan masuk ke akun Anda</p>
+          </div>
+
+          <!-- Form login -->
+          <form id="loginForm" class="needs-validation" novalidate>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="nama@contoh.com" required>
+              <div class="invalid-feedback">Mohon masukkan alamat email yang valid.</div>
+            </div>
+
+            <div class="mb-3 position-relative">
+              <label for="password" class="form-label">Kata sandi</label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan kata sandi" required>
+                <button class="eye-btn" type="button" id="togglePassword" tabindex="-1" aria-label="Tampilkan / Sembunyikan kata sandi">
+                  <i class="bi bi-eye" id="eyeIcon"></i>
+                </button>
+                <div class="invalid-feedback">Kata sandi diperlukan.</div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="remember">
+                <label class="form-check-label" for="remember">Ingat saya</label>
+              </div>
+              <a href="#" class="small">Lupa kata sandi?</a>
+            </div>
+
+            <div class="d-grid mb-3">
+              <button class="btn btn-primary btn-lg" type="submit">Masuk</button>
+            </div>
+
+            <div class="text-center footer-small text-muted">
+              Belum punya akun? <a href="#">Daftar</a>
+            </div>
+          </form>
+
+          <hr>
+          <div class="text-center mt-3">
+            <small class="text-muted">Atau masuk dengan</small>
+            <div class="d-flex gap-2 justify-content-center mt-2">
+              <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-google"></i> Google</button>
+              <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-facebook"></i> Facebook</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Toggle show/hide password
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
+    togglePassword.addEventListener('click', () => {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      eyeIcon.className = type === 'password' ? 'bi bi-eye' : 'bi bi-eye-slash';
+    });
+
+    // Simple Bootstrap validation
+    (function () {
+      'use strict'
+      const form = document.getElementById('loginForm');
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        } else {
+          event.preventDefault();
+          // TODO: ganti dengan logika autentikasi (fetch/axios ke API / Firebase)
+          alert('Berhasil (contoh). Ganti alert ini dengan logika login Anda.');
+        }
+        form.classList.add('was-validated');
+      }, false)
+    })()
+  </script>
+</body>
+</html>
